@@ -3,22 +3,24 @@ import streamlit as st
 # --- PAGE CONFIGURATION ---
 st.set_page_config(page_title="Python-English Pilot Study", layout="wide")
 
-# --- SIDEBAR NAVIGATION ---
+# --- SIDEBAR NAVIGATION (Updated to Dropdown) ---
 st.sidebar.title("Pilot Navigation")
-st.sidebar.info("Progress through the levels to explore how Python logic reinforces English acquisition.")
-level = st.sidebar.radio("Go to Level:", [
-    "1. The Word Lab (Nouns)", 
-    "2. The Sentence Builder (Syntax)", 
-    "3. The Choice Chamber (Conditionals)", 
-    "4. The Synonym Vault (Vocabulary)", 
-    "5. The Narrative Loop (Sequence)"
+st.sidebar.info("Select a level from the dropdown to explore the intersection of code and language.")
+
+# Using selectbox for a cleaner dropdown interface
+level = st.sidebar.selectbox("Go to Level:", [
+    "Level 1: The Word Lab (Nouns)", 
+    "Level 2: The Sentence Builder (Syntax)", 
+    "Level 3: The Choice Chamber (Conditionals)", 
+    "Level 4: The Synonym Vault (Vocabulary)", 
+    "Level 5: The Narrative Loop (Sequence)"
 ])
 
 st.title("Literacy through Logic: An English-Python Pilot")
 st.markdown("---")
 
 # --- LEVEL 1: THE WORD LAB ---
-if level == "1. The Word Lab (Nouns)":
+if "Level 1" in level:
     st.header("Level 1: Categorizing Words")
     st.write("In Python, we use **variables** to store words. This is like labeling a box.")
     
@@ -31,7 +33,7 @@ if level == "1. The Word Lab (Nouns)":
     st.success(f"The word '{user_noun}' is now stored as a subject for our future sentences.")
 
 # --- LEVEL 2: THE SENTENCE BUILDER ---
-elif level == "2. The Sentence Builder (Syntax)":
+elif "Level 2" in level:
     st.header("Level 2: Sentence Structure (S-V-O)")
     st.write("English follows a Subject-Verb-Object order. Python uses **f-strings** to join these parts.")
 
@@ -51,7 +53,7 @@ elif level == "2. The Sentence Builder (Syntax)":
     st.success(full_sentence)
 
 # --- LEVEL 3: THE CHOICE CHAMBER ---
-elif level == "3. The Choice Chamber (Conditionals)":
+elif "Level 3" in level:
     st.header("Level 3: Cause and Effect (If/Then)")
     st.write("Using 'If' allows us to change the story based on a condition.")
 
@@ -73,7 +75,7 @@ elif level == "3. The Choice Chamber (Conditionals)":
     st.success(f"The student will {action} {connector} {reason}.")
 
 # --- LEVEL 4: THE SYNONYM VAULT ---
-elif level == "4. The Synonym Vault (Vocabulary)":
+elif "Level 4" in level:
     st.header("Level 4: Precision in Vocabulary")
     st.write("Python **Dictionaries** map one word to another. We can use this to find better synonyms.")
 
@@ -92,7 +94,7 @@ elif level == "4. The Synonym Vault (Vocabulary)":
     st.info(f"Instead of saying '{base_word}', a more precise academic word is **{vocab_vault[base_word]}**.")
 
 # --- LEVEL 5: THE NARRATIVE LOOP ---
-elif level == "5. The Narrative Loop (Sequence)":
+elif "Level 5" in level:
     st.header("Level 5: Sequence and Chronology")
     st.write("A **For Loop** helps us describe a series of actions in order (First, Next, Finally).")
 
