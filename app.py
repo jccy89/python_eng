@@ -1,13 +1,12 @@
 import streamlit as st
 
 # --- PAGE CONFIGURATION ---
-st.set_page_config(page_title="Python-English Pilot Study", layout="wide")
+st.set_page_config(page_title="ProGrammar: English-Python Pilot", layout="wide")
 
-# --- SIDEBAR NAVIGATION (Updated to Dropdown) ---
-st.sidebar.title("Pilot Navigation")
-st.sidebar.info("Select a level from the dropdown to explore the intersection of code and language.")
+# --- SIDEBAR NAVIGATION ---
+st.sidebar.title("ProGrammar Navigation")
+st.sidebar.info("Select a level to explore how programming logic reinforces English acquisition.")
 
-# Using selectbox for a cleaner dropdown interface
 level = st.sidebar.selectbox("Go to Level:", [
     "Level 1: The Word Lab (Nouns)", 
     "Level 2: The Sentence Builder (Syntax)", 
@@ -16,13 +15,13 @@ level = st.sidebar.selectbox("Go to Level:", [
     "Level 5: The Narrative Loop (Sequence)"
 ])
 
-st.title("Literacy through Logic: An English-Python Pilot")
+st.title("ProGrammar: Literacy through Logic")
 st.markdown("---")
 
 # --- LEVEL 1: THE WORD LAB ---
 if "Level 1" in level:
     st.header("Level 1: Categorizing Words")
-    st.write("In Python, we use **variables** to store words. This is like labeling a box.")
+    st.write("In Python, we use **variables** to store words. Think of a variable as a labeled box for a noun.")
     
     user_noun = st.text_input("Type a noun (a person, place, or thing):", "Scientist")
     
@@ -30,12 +29,13 @@ if "Level 1" in level:
     st.code(f"subject = '{user_noun}'", language="python")
     
     st.subheader("Linguistic Outcome:")
-    st.success(f"The word '{user_noun}' is now stored as a subject for our future sentences.")
+    st.success(f"The word '{user_noun}' is now stored as a 'subject'.")
+    st.info("**Research Note:** This stage establishes the concept of 'Data vs Label,' helping learners isolate parts of speech.")
 
 # --- LEVEL 2: THE SENTENCE BUILDER ---
 elif "Level 2" in level:
     st.header("Level 2: Sentence Structure (S-V-O)")
-    st.write("English follows a Subject-Verb-Object order. Python uses **f-strings** to join these parts.")
+    st.write("English follow a Subject-Verb-Object order. Python uses **f-strings** to join these parts into a complete thought.")
 
     col1, col2, col3 = st.columns(3)
     with col1: s = st.text_input("Subject", "The researcher")
@@ -48,14 +48,18 @@ elif "Level 2" in level:
     st.code(f"print(f'{{subject}} {{verb}} {{object}}.')", language="python")
     
     st.subheader("English Output:")
-    if not s[0].isupper():
-        st.warning("Note: Remember that English sentences start with a Capital Letter!")
+    
+    # --- GROWTH MINDSET CHECK: Casing Bug ---
+    if len(s) > 0 and not s[0].isupper():
+        st.warning("⚠️ **Linguistic Bug Detected:** In English code, the first letter of a sentence must be capitalized. Try fixing your 'Subject' input!")
+    
     st.success(full_sentence)
+    st.info("**Research Note:** By treating capitalization as a 'bug,' we reduce the anxiety of formal correction.")
 
 # --- LEVEL 3: THE CHOICE CHAMBER ---
 elif "Level 3" in level:
     st.header("Level 3: Cause and Effect (If/Then)")
-    st.write("Using 'If' allows us to change the story based on a condition.")
+    st.write("Using 'If' allows us to change the narrative flow based on a condition.")
 
     choice = st.radio("Is the student tired?", ["Yes", "No"])
 
@@ -69,15 +73,16 @@ elif "Level 3" in level:
         reason = "they have high energy"
 
     st.subheader("The Logic Gate:")
-    st.code(f"if tired == True:\n    action = 'rest'\nelse:\n    action = 'study'", language="python")
+    st.code(f"if student_is_tired == True:\n    action = 'rest'\nelse:\n    action = 'study'", language="python")
     
     st.subheader("Narrative Result:")
     st.success(f"The student will {action} {connector} {reason}.")
+    st.info("**Research Note:** This demonstrates how conjunctions (because/since) serve as logical operators in a sentence.")
 
 # --- LEVEL 4: THE SYNONYM VAULT ---
 elif "Level 4" in level:
     st.header("Level 4: Precision in Vocabulary")
-    st.write("Python **Dictionaries** map one word to another. We can use this to find better synonyms.")
+    st.write("Python **Dictionaries** map basic words to advanced ones. We use this to upgrade our English.")
 
     vocab_vault = {
         "happy": "elated",
@@ -85,13 +90,13 @@ elif "Level 4" in level:
         "smart": "intelligent"
     }
 
-    base_word = st.selectbox("Choose a basic word to improve:", list(vocab_vault.keys()))
+    base_word = st.selectbox("Choose a basic word to 'Debug' and improve:", list(vocab_vault.keys()))
     
     st.subheader("How the 'Vault' works:")
     st.code(f"vault = {vocab_vault}\nbetter_word = vault['{base_word}']", language="python")
     
     st.subheader("Linguistic Upgrade:")
-    st.info(f"Instead of saying '{base_word}', a more precise academic word is **{vocab_vault[base_word]}**.")
+    st.info(f"Instead of the basic word '{base_word}', use the precise academic term: **{vocab_vault[base_word]}**.")
 
 # --- LEVEL 5: THE NARRATIVE LOOP ---
 elif "Level 5" in level:
@@ -104,7 +109,7 @@ elif "Level 5" in level:
     steps_list = [step.strip() for step in steps_input.split(",")]
 
     st.subheader("The Execution Loop:")
-    st.code("for step in process_list:\n    print(f'Then, the student will {step}.')", language="python")
+    st.code("for step in steps_list:\n    print(f'Next, you {step}.')", language="python")
 
     st.subheader("Your Sequential Narrative:")
     for i, step in enumerate(steps_list):
@@ -114,6 +119,7 @@ elif "Level 5" in level:
             st.write(f"**Finally**, you {step.lower()}.")
         else:
             st.write(f"**Next**, you {step.lower()}.")
+    st.info("**Research Note:** This reinforces temporal markers and the importance of logical order in communication.")
 
 # --- FOOTER ---
 st.sidebar.markdown("---")
